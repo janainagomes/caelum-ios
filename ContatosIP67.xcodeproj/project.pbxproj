@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		907D594615E45D8F0072CE32 /* Contato.m in Sources */ = {isa = PBXBuildFile; fileRef = 907D594515E45D8F0072CE32 /* Contato.m */; };
 		90A3ACA015E440450059F226 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A3AC9F15E440450059F226 /* UIKit.framework */; };
 		90A3ACA215E440450059F226 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A3ACA115E440450059F226 /* Foundation.framework */; };
 		90A3ACA415E440450059F226 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A3ACA315E440450059F226 /* CoreGraphics.framework */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		907D594415E45D8F0072CE32 /* Contato.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contato.h; sourceTree = "<group>"; };
+		907D594515E45D8F0072CE32 /* Contato.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contato.m; sourceTree = "<group>"; };
 		90A3AC9B15E440450059F226 /* ContatosIP67.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContatosIP67.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90A3AC9F15E440450059F226 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		90A3ACA115E440450059F226 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -83,6 +86,8 @@
 				90A3ACB815E4410A0059F226 /* FormularioContatoViewController.h */,
 				90A3ACB915E4410A0059F226 /* FormularioContatoViewController.m */,
 				90A3ACBA15E4410A0059F226 /* FormularioContatoViewController.xib */,
+				907D594415E45D8F0072CE32 /* Contato.h */,
+				907D594515E45D8F0072CE32 /* Contato.m */,
 			);
 			path = ContatosIP67;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 				90A3ACAC15E440450059F226 /* main.m in Sources */,
 				90A3ACB015E440450059F226 /* AppDelegate.m in Sources */,
 				90A3ACBB15E4410A0059F226 /* FormularioContatoViewController.m in Sources */,
+				907D594615E45D8F0072CE32 /* Contato.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +272,7 @@
 				90A3ACB515E440450059F226 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

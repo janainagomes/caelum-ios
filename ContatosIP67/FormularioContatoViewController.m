@@ -7,6 +7,7 @@
 //
 
 #import "FormularioContatoViewController.h"
+#import "Contato.h"
 
 @interface FormularioContatoViewController ()
 
@@ -45,15 +46,24 @@
 
 - (IBAction) pegaDadosDoFormulario:(id)sender {
 
-    NSMutableDictionary *dadosContato = [[NSMutableDictionary alloc] init];
-    [dadosContato setObject: [nome text] forKey:@"nome" ];
-    [dadosContato setObject: [telefone text] forKey:@"telefone" ];
-    [dadosContato setObject: [email text] forKey:@"email" ];
-    [dadosContato setObject: [endereco text] forKey:@"endereco" ];
-    [dadosContato setObject: [site text] forKey:@"site" ];
+//    NSMutableDictionary *dadosContato = [[NSMutableDictionary alloc] init];
+//    [dadosContato setObject: [nome text] forKey:@"nome" ];
+//    [dadosContato setObject: [telefone text] forKey:@"telefone" ];
+//    [dadosContato setObject: [email text] forKey:@"email" ];
+//    [dadosContato setObject: [endereco text] forKey:@"endereco" ];
+//    [dadosContato setObject: [site text] forKey:@"site" ];
+//    
+//    NSLog(@"dados: %@", dadosContato);
     
-    NSLog(@"dados: %@", dadosContato);
     
+    Contato *contato = [[Contato alloc] init];
+    [contato setNome: [nome text]];
+    [contato setTelefone: [telefone text]];
+    [contato setEmail: [email text]];
+    [contato setEndereco: [endereco text] ];
+    [contato setSite: [site text]];
+    
+    NSLog(@"contato om nome: %@", [contato nome]);
 
 }
 
