@@ -41,4 +41,44 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+@synthesize nome, telefone, email, endereco, site;
+
+- (IBAction) pegaDadosDoFormulario:(id)sender {
+
+    NSMutableDictionary *dadosContato = [[NSMutableDictionary alloc] init];
+    [dadosContato setObject: [nome text] forKey:@"nome" ];
+    [dadosContato setObject: [telefone text] forKey:@"telefone" ];
+    [dadosContato setObject: [email text] forKey:@"email" ];
+    [dadosContato setObject: [endereco text] forKey:@"endereco" ];
+    [dadosContato setObject: [site text] forKey:@"site" ];
+    
+    NSLog(@"dados: %@", dadosContato);
+    
+
+}
+
+- (IBAction) enviarAction: (id) sender{
+	//[mensagem setText:texto.text];
+	[nome resignFirstResponder];
+    [telefone resignFirstResponder];
+    [email resignFirstResponder];
+    [endereco resignFirstResponder];
+    [site resignFirstResponder];
+    
+}
+
+- (IBAction) esconderTeclado: (id) sender{
+	[nome resignFirstResponder];
+    [telefone resignFirstResponder];
+    [email resignFirstResponder];
+    [endereco resignFirstResponder];
+    [site resignFirstResponder];
+}
+
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+	[textField resignFirstResponder];
+	return YES;
+}
+
 @end
