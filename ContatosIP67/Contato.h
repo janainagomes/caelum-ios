@@ -18,10 +18,11 @@
 @property (strong) NSString *endereco;
 @property (strong) NSString *site;
 
--(void) setNome:(NSString *)nome;
--(void) setTelefone:(NSString *)telefone;
--(void) setEmail:(NSString *)email;
--(void) setEndereco:(NSString *)endereco;
--(void) setSite:(NSString *)site;
+
+//-(void) setNome:(NSString *)nome;
+//-(void) setTelefone:(NSString *)telefone;
+//-(void) setEmail:(NSString *)email;
+//-(void) setEndereco:(NSString *)endereco;
+//-(void) setSite:(NSString *)site;
 
 @end

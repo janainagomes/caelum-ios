@@ -16,9 +16,7 @@
 @property (nonatomic, weak) IBOutlet UITextField *endereco;
 @property (nonatomic, weak) IBOutlet UITextField *site;
 
-- (IBAction) enviarAction: (id) sender;
-- (IBAction) esconderTeclado: (id) sender;
-- (BOOL) textFieldShouldReturn:(UITextField *)textField;
+@property (strong, nonatomic) NSMutableArray *contatos;
 
 
 @end

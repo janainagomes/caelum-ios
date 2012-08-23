@@ -46,15 +46,29 @@
 
 - (IBAction) pegaDadosDoFormulario:(id)sender {
 
+    Contato *contato = [self obtemContato: (id)sender];
+    
 //    NSMutableDictionary *dadosContato = [[NSMutableDictionary alloc] init];
-//    [dadosContato setObject: [nome text] forKey:@"nome" ];
-//    [dadosContato setObject: [telefone text] forKey:@"telefone" ];
-//    [dadosContato setObject: [email text] forKey:@"email" ];
-//    [dadosContato setObject: [endereco text] forKey:@"endereco" ];
-//    [dadosContato setObject: [site text] forKey:@"site" ];
-//    
+//    [dadosContato setObject: [contato nome] forKey:@"nome" ];
+//    [dadosContato setObject: [contato telefone] forKey:@"telefone" ];
+//    [dadosContato setObject: [contato email] forKey:@"email" ];
+//    [dadosContato setObject: [contato endereco] forKey:@"endereco" ];
+//    [dadosContato setObject: [contato site] forKey:@"site" ];
 //    NSLog(@"dados: %@", dadosContato);
     
+    
+    //Desta forma acessa o metodo que sobrescreve o getter
+    [[self contatos] addObject:contato];
+    
+    //Acesso direto a propriedade
+    //[self.contatos addObject:contato];
+    
+    NSLog(@"Contatos: %@", [self contatos]);
+ 
+}
+
+
+-(Contato *) obtemContato:(id)sender{
     
     Contato *contato = [[Contato alloc] init];
     [contato setNome: [nome text]];
@@ -63,32 +77,65 @@
     [contato setEndereco: [endereco text] ];
     [contato setSite: [site text]];
     
-    NSLog(@"contato om nome: %@", [contato nome]);
-
-}
-
-- (IBAction) enviarAction: (id) sender{
-	//[mensagem setText:texto.text];
-	[nome resignFirstResponder];
-    [telefone resignFirstResponder];
-    [email resignFirstResponder];
-    [endereco resignFirstResponder];
-    [site resignFirstResponder];
+    //NSLog(@"contato om nome: %@", [contato nome]);
+     //[site resignFirstResponder];
+     
+    [[self view] endEditing: YES];
+    
+    return contato;
     
 }
 
-- (IBAction) esconderTeclado: (id) sender{
-	[nome resignFirstResponder];
-    [telefone resignFirstResponder];
-    [email resignFirstResponder];
-    [endereco resignFirstResponder];
-    [site resignFirstResponder];
+
+
+@synthesize contatos = _contatos;
+
+-(IBAction) proximoElemento:(id)sender{
+    
+    if(sender == nome){
+        [telefone becomeFirstResponder];
+    }else if (sender == telefone){
+        [email becomeFirstResponder];
+    }else if (sender == email){
+        [endereco becomeFirstResponder];
+    }else if (sender == endereco){
+        [site becomeFirstResponder];
+    }else if (sender == site){
+        [site resignFirstResponder];
+    }    
+    
+    
 }
 
+//Sobrescrevendo o metodo getter
+- (NSMutableArray *) contatos{
+    NSLog(@"Acessou o método");
+    return _contatos;
+}
 
--(BOOL) textFieldShouldReturn:(UITextField *)textField{
-	[textField resignFirstResponder];
-	return YES;
+//Implementando a inicialização customizada
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.contatos = [[NSMutableArray alloc] init];
+        
+        self.navigationItem.title = @"Contato";
+       
+        UIBarButtonItem *voltar = [[UIBarButtonItem alloc] initWithTitle:@"Voltar" 
+                                                                   style:UIBarButtonItemStylePlain 
+                                                                  target:self 
+                                                                  action:@selector(escondeFormulario)];
+        
+        
+        self.navigationItem.leftBarButtonItem = voltar;
+        
+    }
+    return self;
+}
+
+- (void) escondeFormulario {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9045958D15E59E96007150F6 /* ListaContatosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9045958C15E59E96007150F6 /* ListaContatosViewController.m */; };
 		907D594615E45D8F0072CE32 /* Contato.m in Sources */ = {isa = PBXBuildFile; fileRef = 907D594515E45D8F0072CE32 /* Contato.m */; };
 		90A3ACA015E440450059F226 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A3AC9F15E440450059F226 /* UIKit.framework */; };
 		90A3ACA215E440450059F226 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A3ACA115E440450059F226 /* Foundation.framework */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9045958B15E59E96007150F6 /* ListaContatosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaContatosViewController.h; sourceTree = "<group>"; };
+		9045958C15E59E96007150F6 /* ListaContatosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaContatosViewController.m; sourceTree = "<group>"; };
 		907D594415E45D8F0072CE32 /* Contato.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contato.h; sourceTree = "<group>"; };
 		907D594515E45D8F0072CE32 /* Contato.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contato.m; sourceTree = "<group>"; };
 		90A3AC9B15E440450059F226 /* ContatosIP67.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContatosIP67.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +91,8 @@
 				90A3ACBA15E4410A0059F226 /* FormularioContatoViewController.xib */,
 				907D594415E45D8F0072CE32 /* Contato.h */,
 				907D594515E45D8F0072CE32 /* Contato.m */,
+				9045958B15E59E96007150F6 /* ListaContatosViewController.h */,
+				9045958C15E59E96007150F6 /* ListaContatosViewController.m */,
 			);
 			path = ContatosIP67;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 				90A3ACB015E440450059F226 /* AppDelegate.m in Sources */,
 				90A3ACBB15E4410A0059F226 /* FormularioContatoViewController.m in Sources */,
 				907D594615E45D8F0072CE32 /* Contato.m in Sources */,
+				9045958D15E59E96007150F6 /* ListaContatosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
