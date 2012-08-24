@@ -43,34 +43,35 @@
 }
 
 @synthesize nome, telefone, email, endereco, site;
+//
+//- (IBAction) pegaDadosDoFormulario:(id)sender {
+//
+//    Contato *contato = [self obtemContato: (id)sender];
+//    
+////    NSMutableDictionary *dadosContato = [[NSMutableDictionary alloc] init];
+////    [dadosContato setObject: [contato nome] forKey:@"nome" ];
+////    [dadosContato setObject: [contato telefone] forKey:@"telefone" ];
+////    [dadosContato setObject: [contato email] forKey:@"email" ];
+////    [dadosContato setObject: [contato endereco] forKey:@"endereco" ];
+////    [dadosContato setObject: [contato site] forKey:@"site" ];
+////    NSLog(@"dados: %@", dadosContato);
+//    
+//    
+//    //Desta forma acessa o metodo que sobrescreve o getter
+//    [[self contatos] addObject:contato];
+//    
+//    //Acesso direto a propriedade
+//    //[self.contatos addObject:contato];
+//    
+//    NSLog(@"Contatos: %@", [self contatos]);
+// 
+//}
 
-- (IBAction) pegaDadosDoFormulario:(id)sender {
 
-    Contato *contato = [self obtemContato: (id)sender];
-    
-//    NSMutableDictionary *dadosContato = [[NSMutableDictionary alloc] init];
-//    [dadosContato setObject: [contato nome] forKey:@"nome" ];
-//    [dadosContato setObject: [contato telefone] forKey:@"telefone" ];
-//    [dadosContato setObject: [contato email] forKey:@"email" ];
-//    [dadosContato setObject: [contato endereco] forKey:@"endereco" ];
-//    [dadosContato setObject: [contato site] forKey:@"site" ];
-//    NSLog(@"dados: %@", dadosContato);
-    
-    
-    //Desta forma acessa o metodo que sobrescreve o getter
-    [[self contatos] addObject:contato];
-    
-    //Acesso direto a propriedade
-    //[self.contatos addObject:contato];
-    
-    NSLog(@"Contatos: %@", [self contatos]);
- 
-}
-
-
--(Contato *) obtemContato:(id)sender{
+-(Contato *) pegaDadosFormulario{
     
     Contato *contato = [[Contato alloc] init];
+    
     [contato setNome: [nome text]];
     [contato setTelefone: [telefone text]];
     [contato setEmail: [email text]];
@@ -80,7 +81,7 @@
     //NSLog(@"contato om nome: %@", [contato nome]);
      //[site resignFirstResponder];
      
-    [[self view] endEditing: YES];
+    //[[self view] endEditing: YES];
     
     return contato;
     
@@ -118,7 +119,8 @@
 {
     self = [super init];
     if (self) {
-        self.contatos = [[NSMutableArray alloc] init];
+        //removendo do codigo para nao zerar o array
+       // self.contatos = [[NSMutableArray alloc] init];
         
         self.navigationItem.title = @"Contato";
        
@@ -127,8 +129,14 @@
                                                                   target:self 
                                                                   action:@selector(escondeFormulario)];
         
-        
         self.navigationItem.leftBarButtonItem = voltar;
+        
+        UIBarButtonItem *adiciona = [[UIBarButtonItem alloc] initWithTitle:@"Adiciona" 
+                                                                   style:UIBarButtonItemStylePlain 
+                                                                  target:self 
+                                                                  action:@selector(criaContato)];
+        
+        self.navigationItem.rightBarButtonItem = adiciona;
         
     }
     return self;
@@ -136,6 +144,13 @@
 
 - (void) escondeFormulario {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void) criaContato{
+    Contato *contato =  [self pegaDadosFormulario];
+    [self.contatos addObject:contato];
+    //NSLog(@"Contatos cadastrados: %d", [self.contatos count]);
+    [self dismissModalViewControllerAnimated: YES];
 }
 
 @end

@@ -12,17 +12,36 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window;
+@synthesize window = _window, contatos, arquivoContatos;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    //Salvar arquivo com contatos
+    NSArray *userDirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *documentDir = [userDirs objectAtIndex:0];
+    
+    self.arquivoContatos = [NSString stringWithFormat:@"%@/ArquivoContatos", documentDir];
+    
+    //Recuperar dados do arquivo
+    self.contatos = [NSKeyedUnarchiver unarchiveObjectWithFile:self.arquivoContatos];
+    if(!self.contatos){
+        self.contatos = [[NSMutableArray alloc] init];
+    }
+    //---
+    
+    //Inicializando a lista de contatos
+    //self.contatos = [[NSMutableArray alloc] init ];
     
     //Inicializando o formulario como principal
     //FormularioContatoViewController *formulario = [[FormularioContatoViewController alloc] init];
     //self.window.rootViewController = formulario;
     
     ListaContatosViewController *lista = [[ListaContatosViewController alloc] init];
+    lista.contatos = self.contatos;
+    
     //self.window.rootViewController = lista;
     //[[self  window] setRootViewController : lista];
 
@@ -30,10 +49,10 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController: lista];
     [[self  window] setRootViewController : nav];
     
-    
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -47,6 +66,9 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    //Implementando para salvar arquivos
+    [NSKeyedArchiver archiveRootObject:self.contatos toFile:self.arquivoContatos];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

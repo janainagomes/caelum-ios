@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Contato : NSObject
+@interface Contato : NSObject<NSCoding>
 
 //@property (nonatomic, strong) NSString *nome;
 
@@ -18,6 +18,8 @@
 @property (strong) NSString *endereco;
 @property (strong) NSString *site;
 
+- (void)encodeWithCoder:(NSCoder *)aCoder;
+- (id)initWithCoder:(NSCoder *)aDecoder;
 
 //-(void) setNome:(NSString *)nome;
 //-(void) setTelefone:(NSString *)telefone;

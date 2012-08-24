@@ -12,4 +12,9 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+//Referencia utilizada em todas as telas
+@property (strong) NSMutableArray *contatos;
+
+@property (strong) NSString *arquivoContatos;
+
 @end
