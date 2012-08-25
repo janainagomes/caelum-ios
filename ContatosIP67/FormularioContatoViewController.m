@@ -28,6 +28,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    if(self.contato){
+        nome.text = contato.nome;
+        telefone.text = contato.telefone;
+        email.text = contato.email;
+        endereco.text = contato.endereco;
+        site.text = contato.site;
+    }
 }
 
 - (void)viewDidUnload
@@ -42,7 +50,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-@synthesize nome, telefone, email, endereco, site;
+@synthesize nome, telefone, email, endereco, site, contato, delegate;
 //
 //- (IBAction) pegaDadosDoFormulario:(id)sender {
 //
@@ -70,7 +78,9 @@
 
 -(Contato *) pegaDadosFormulario{
     
-    Contato *contato = [[Contato alloc] init];
+    if(!self.contato){
+        contato = [[Contato alloc] init];
+    }
     
     [contato setNome: [nome text]];
     [contato setTelefone: [telefone text]];
@@ -147,10 +157,37 @@
 }
 
 - (void) criaContato{
-    Contato *contato =  [self pegaDadosFormulario];
-    [self.contatos addObject:contato];
+    Contato *novoContato =  [self pegaDadosFormulario];
+    [self.contatos addObject:novoContato];
     //NSLog(@"Contatos cadastrados: %d", [self.contatos count]);
     [self dismissModalViewControllerAnimated: YES];
+    if(delegate){
+        [self.delegate contatoAdicionado:novoContato];
+    }
+}
+
+//Editando uma linha selecionada
+-(id) initWithContato:(Contato *)_contato {
+    self = [super init];
+    if(self){
+        self.contato = _contato;
+        
+        UIBarButtonItem *confirmar = [[UIBarButtonItem alloc] initWithTitle:@"Confirmar" 
+                                                                      style:(UIBarButtonItemStylePlain)
+                                                                     target:self 
+                                                                     action:@selector(atualizaContato)];
+        self.navigationItem.rightBarButtonItem = confirmar;
+        
+    }
+    return self;
+}
+
+-(void) atualizaContato {
+    Contato *contatoAtualizado = [self pegaDadosFormulario];
+    [self.navigationController popViewControllerAnimated:YES];
+    if(delegate){
+        [self.delegate contatoAtualizado:contatoAtualizado];
+    }
 }
 
 @end

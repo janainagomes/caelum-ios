@@ -20,14 +20,41 @@
     if (self) {
         [[self navigationItem] setTitle : @"Contatos"];
         
+        //Exibindo o botao para deletar no lado direito
+        self.navigationItem.leftBarButtonItem = self.editButtonItem;
+        
         UIBarButtonItem *botaoExibirFormulario = [[UIBarButtonItem alloc]
             initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
             target:self action:@selector(exibeFormulario)];
+        
         [[self navigationItem] setRightBarButtonItem: botaoExibirFormulario];
         
     }
     return self;
 }
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Contato *contato = [self.contatos objectAtIndex:indexPath.row];
+    
+    FormularioContatoViewController *form = [[FormularioContatoViewController alloc] initWithContato:contato];
+    form.delegate = self;
+    form.contatos = self.contatos;
+        
+    [self.navigationController pushViewController:form animated:YES];
+    
+    NSLog(@"Nome: %@", contato.nome);
+}
+
+//Editar e remover a linha do registro (Path - Section x Row)
+-(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        [self.contatos removeObjectAtIndex:indexPath.row];
+        
+        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+        [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;   
 }
@@ -87,12 +114,20 @@
     
     FormularioContatoViewController *form = [[FormularioContatoViewController alloc] init];
     form.contatos = self.contatos;
+    form.delegate  = self;
     
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:form];
 
     [self presentModalViewController:navigation animated:YES];
     
-    
+}
+
+-(void) contatoAtualizado:(Contato *)contato {
+    NSLog(@"atualizado: %d", [self.contatos indexOfObject:contato]);
+}
+
+-(void) contatoAdicionado:(Contato *)contato {
+    NSLog(@"adicionado: %d", [self.contatos indexOfObject:contato]);
 }
 
 

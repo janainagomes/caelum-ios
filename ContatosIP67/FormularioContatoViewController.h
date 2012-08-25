@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Contato.h"
+#import "ListaContatosProtocol.h"
 
 @interface FormularioContatoViewController : UIViewController
 
@@ -18,5 +20,10 @@
 
 @property (strong, nonatomic) NSMutableArray *contatos;
 
+@property (strong) Contato *contato;
+
+@property (weak) id<ListaContatosProtocol> delegate;
+
+-(id) initWithContato:(Contato *)contato;
 
 @end
