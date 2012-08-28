@@ -8,11 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "ListaContatosProtocol.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface ListaContatosViewController : UITableViewController<ListaContatosProtocol>
+@interface ListaContatosViewController : UITableViewController<ListaContatosProtocol, UIActionSheetDelegate,MFMailComposeViewControllerDelegate> {
+    
+    Contato* contatoSelecionado;
+}
 
 @property (strong) NSMutableArray *contatos;
 
 - (void) exibeFormulario;
+
+- (void) exibeMaisAcoes: (UIGestureRecognizer *) gesture;
 
 @end

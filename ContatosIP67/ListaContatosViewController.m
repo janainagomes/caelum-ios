@@ -5,6 +5,7 @@
 //  Created by ios2971 on 22/08/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+#import <Twitter/TWTweetComposeViewController.h>
 
 #import "ListaContatosViewController.h"
 #import "FormularioContatoViewController.h"
@@ -126,9 +127,114 @@
     NSLog(@"atualizado: %d", [self.contatos indexOfObject:contato]);
 }
 
+
 -(void) contatoAdicionado:(Contato *)contato {
+    [self.contatos addObject:contato];
     NSLog(@"adicionado: %d", [self.contatos indexOfObject:contato]);
 }
 
+-(void) viewDidLoad {
+    [super viewDidLoad];
+    
+    UILongPressGestureRecognizer *longPress =[[UILongPressGestureRecognizer alloc] 
+                                              initWithTarget:self 
+                                              action:@selector(exibeMaisAcoes:)];
+    [self.tableView addGestureRecognizer:longPress];
+}
+
+-(void) exibeMaisAcoes:(UIGestureRecognizer *)gesture{
+    if(gesture.state == UIGestureRecognizerStateBegan){
+        
+        CGPoint ponto = [gesture locationInView:self.tableView];
+        NSIndexPath *index = [self.tableView indexPathForRowAtPoint:ponto];
+        
+        Contato *contato = [contatos objectAtIndex:index.row];
+        
+        contatoSelecionado = contato;
+        
+        UIActionSheet *opcoes = [[UIActionSheet alloc] initWithTitle:contato.nome delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Ligar", @"Enviar Email", @"Visualizar site", @"Abrir Mapas", @"Twitter", nil];
+        
+        [opcoes showInView:self.view];
+        
+    }
+}
+
+-(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case 0:
+            [self ligar];
+            break;
+        case 1:
+            [self enviarEmail];
+            break;
+        case 2:
+            [self abrirSite];
+            break;
+        case 3:
+            [self mostrarMapa];
+            break;
+        case 4:
+            [self enviarTwitter];
+            
+        default:
+            break;
+    }
+    contatoSelecionado = nil;
+}
+
+-(void) ligar{
+    UIDevice *device = [UIDevice currentDevice];
+    if([device.model isEqualToString:@"iPhone"]){
+        NSString *numero = [NSString stringWithFormat:@"tel:%@", contatoSelecionado.telefone];
+        
+        [self  abrirAplicativoComURL:numero];
+        
+    }else{
+        [[[UIAlertView alloc] initWithTitle:@"Impossivel fazer ligacao" message:@"Seu dispositivo nao e um iPhone" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    }
+}
+
+- (void) abrirAplicativoComURL:(NSString *) url {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
+
+- (void) enviarEmail {
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *enviadorEmail = [[MFMailComposeViewController alloc] init];
+        enviadorEmail.mailComposeDelegate = self;
+        
+        [enviadorEmail setToRecipients:[NSArray arrayWithObject:contatoSelecionado.email]];
+        [enviadorEmail setSubject:@"Caelum"];
+        [self presentModalViewController:enviadorEmail animated:YES];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ops" message:@"Voce nao pode enviar emails. Sem conexao." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [self dismissModalViewControllerAnimated:YES];    
+}
+
+-(void) abrirSite{
+    NSString *url = contatoSelecionado.site;
+    
+    [self abrirAplicativoComURL:url];
+    
+}
+
+-(void) mostrarMapa{
+    NSString *url = [[NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", contatoSelecionado.endereco]
+                     stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [self abrirAplicativoComURL:url];
+}
+
+- (void) enviarTwitter {
+    NSLog(@"Twitter: %@", contatoSelecionado.twitter);
+    TWTweetComposeViewController *enviadorDeTwitter = [[TWTweetComposeViewController alloc] init];
+    [enviadorDeTwitter setInitialText:contatoSelecionado.twitter];
+    [self presentModalViewController:enviadorDeTwitter animated:YES];
+}
 
 @end

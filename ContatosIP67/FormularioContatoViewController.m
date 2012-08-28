@@ -35,6 +35,7 @@
         email.text = contato.email;
         endereco.text = contato.endereco;
         site.text = contato.site;
+        twitter.text = contato.twitter;
     }
 }
 
@@ -50,7 +51,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-@synthesize nome, telefone, email, endereco, site, contato, delegate;
+@synthesize nome, telefone, email, endereco, site, contato, delegate, twitter, botaoFoto;
 //
 //- (IBAction) pegaDadosDoFormulario:(id)sender {
 //
@@ -87,6 +88,7 @@
     [contato setEmail: [email text]];
     [contato setEndereco: [endereco text] ];
     [contato setSite: [site text]];
+    [contato setTwitter: [twitter text]];
     
     //NSLog(@"contato om nome: %@", [contato nome]);
      //[site resignFirstResponder];
@@ -97,8 +99,6 @@
     
 }
 
-
-
 @synthesize contatos = _contatos;
 
 -(IBAction) proximoElemento:(id)sender{
@@ -108,13 +108,14 @@
     }else if (sender == telefone){
         [email becomeFirstResponder];
     }else if (sender == email){
+        [twitter becomeFirstResponder];
+    }else if (sender == twitter){
         [endereco becomeFirstResponder];
     }else if (sender == endereco){
         [site becomeFirstResponder];
     }else if (sender == site){
         [site resignFirstResponder];
     }    
-    
     
 }
 
@@ -157,13 +158,12 @@
 }
 
 - (void) criaContato{
-    Contato *novoContato =  [self pegaDadosFormulario];
-    [self.contatos addObject:novoContato];
     //NSLog(@"Contatos cadastrados: %d", [self.contatos count]);
-    [self dismissModalViewControllerAnimated: YES];
-    if(delegate){
-        [self.delegate contatoAdicionado:novoContato];
+    Contato *novoContato = [self pegaDadosFormulario];
+    if (self.delegate) {
+        [self.delegate contatoAdicionado:novoContato];   
     }
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 //Editando uma linha selecionada
@@ -184,10 +184,32 @@
 
 -(void) atualizaContato {
     Contato *contatoAtualizado = [self pegaDadosFormulario];
-    [self.navigationController popViewControllerAnimated:YES];
-    if(delegate){
-        [self.delegate contatoAtualizado:contatoAtualizado];
+    if (self.delegate) {
+        [self.delegate contatoAtualizado:contatoAtualizado];   
     }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void) selecionaFoto:(id)sender{
+    if([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]){
+        
+        //camera disponivel
+        
+    }else{ //biblioteca
+    
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        picker.allowsEditing = YES;
+        picker.delegate = self;
+        [self presentModalViewController:picker animated:YES];
+        
+    }
+}
+
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *imagemSelecionada = [info valueForKey:UIImagePickerControllerEditedImage];
+    [botaoFoto  setImage:imagemSelecionada forState:UIControlStateNormal];
+    [picker dismissModalViewControllerAnimated:YES];
 }
 
 @end
