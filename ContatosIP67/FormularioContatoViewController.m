@@ -36,6 +36,10 @@
         endereco.text = contato.endereco;
         site.text = contato.site;
         twitter.text = contato.twitter;
+        if(contato.foto){
+            [botaoFoto setImage: contato.foto
+                       forState:UIControlStateNormal];
+        }
     }
 }
 
@@ -89,6 +93,10 @@
     [contato setEndereco: [endereco text] ];
     [contato setSite: [site text]];
     [contato setTwitter: [twitter text]];
+    
+    if(botaoFoto.imageView.image){
+        contato.foto = botaoFoto.imageView.image;
+    }
     
     //NSLog(@"contato om nome: %@", [contato nome]);
      //[site resignFirstResponder];

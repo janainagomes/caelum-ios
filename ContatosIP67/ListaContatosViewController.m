@@ -10,6 +10,7 @@
 #import "ListaContatosViewController.h"
 #import "FormularioContatoViewController.h"
 #import "Contato.h"
+#import "SiteDoContatoViewController.h"
 
 @implementation ListaContatosViewController
 
@@ -19,16 +20,22 @@
 {
     self = [super init];
     if (self) {
-        [[self navigationItem] setTitle : @"Contatos"];
-        
-        //Exibindo o botao para deletar no lado direito
-        self.navigationItem.leftBarButtonItem = self.editButtonItem;
         
         UIBarButtonItem *botaoExibirFormulario = [[UIBarButtonItem alloc]
             initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
             target:self action:@selector(exibeFormulario)];
         
         [[self navigationItem] setRightBarButtonItem: botaoExibirFormulario];
+        
+        
+        //Adicionando a imagem nos UITabBarItem
+        UIImage *imagemTabItem = [UIImage imageNamed: @"lista-contatos.png"];
+        
+        UITabBarItem *tabItem = [[UITabBarItem alloc] initWithTitle:@"Contatos" image:imagemTabItem tag:0];
+        self.tabBarItem = tabItem;
+        self.navigationItem.title = @"Contatos";
+        //Exibindo o botao para deletar no lado direito
+        self.navigationItem.leftBarButtonItem = self.editButtonItem;
         
     }
     return self;
@@ -218,9 +225,12 @@
 }
 
 -(void) abrirSite{
-    NSString *url = contatoSelecionado.site;
+    //NSString *url = contatoSelecionado.site;
+    //[self abrirAplicativoComURL:url];
     
-    [self abrirAplicativoComURL:url];
+    SiteDoContatoViewController *siteView = [SiteDoContatoViewController new];
+    [siteView setContato:contatoSelecionado];
+    [self.navigationController pushViewController:siteView animated:YES];
     
 }
 

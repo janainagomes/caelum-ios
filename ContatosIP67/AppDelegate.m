@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "FormularioContatoViewController.h"
 #import "ListaContatosViewController.h"
+#import "ContatosNoMapaViewController.h"
 
 @implementation AppDelegate
 
@@ -18,6 +19,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
+    
     //Salvar arquivo com contatos
     NSArray *userDirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
@@ -30,6 +32,22 @@
     if(!self.contatos){
         self.contatos = [[NSMutableArray alloc] init];
     }
+    
+    ListaContatosViewController *lista = [[ListaContatosViewController alloc] init];
+    lista.contatos = self.contatos;
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lista];
+    
+    ContatosNoMapaViewController *contatosMapa = [[ContatosNoMapaViewController alloc] init];
+    
+    //Criando os contatos no mapa
+    UINavigationController *mapaNavigation = [[UINavigationController alloc] initWithRootViewController:contatosMapa];    
+    
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    
+    tabBarController.viewControllers = [NSArray arrayWithObjects:nav, mapaNavigation, nil];
+    
     //---
     
     //Inicializando a lista de contatos
@@ -39,19 +57,20 @@
     //FormularioContatoViewController *formulario = [[FormularioContatoViewController alloc] init];
     //self.window.rootViewController = formulario;
     
-    ListaContatosViewController *lista = [[ListaContatosViewController alloc] init];
-    lista.contatos = self.contatos;
-    
     //self.window.rootViewController = lista;
     //[[self  window] setRootViewController : lista];
 
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController: lista];
-    [[self  window] setRootViewController : nav];
-    
     // Override point for customization after application launch.
+    //
+    
+    
+    
+    self.window.rootViewController = tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    sleep(3);
     
     return YES;
 }

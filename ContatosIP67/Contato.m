@@ -16,6 +16,7 @@
 @synthesize endereco = _endereco;
 @synthesize site = _site;
 @synthesize twitter = _twitter;
+@synthesize foto = _foto;
 
 - (NSString*) description {
     NSString *retorno = [NSString stringWithFormat:@"Nome: %@ \n Email: %@",_nome, _email]; 
@@ -29,6 +30,7 @@
     [aCoder encodeObject:_endereco forKey:@"endereco"];
     [aCoder encodeObject:_site forKey:@"site"];
     [aCoder encodeObject:_twitter forKey:@"twitter"];
+    [aCoder encodeObject:_foto forKey:@"foto"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
@@ -39,7 +41,8 @@
         [self setEmail: [aDecoder decodeObjectForKey:@"email"]];
         [self setEndereco: [aDecoder decodeObjectForKey:@"endereco"]];
         [self setSite: [aDecoder decodeObjectForKey:@"site"]];
-        [self setTwitter:[aDecoder decodeObjectForKey:@"twitter"]];
+        [self setTwitter: [aDecoder decodeObjectForKey:@"twitter"]];
+        [self setFoto: [aDecoder decodeObjectForKey:@"foto"]];
     }
     return self;
 }
