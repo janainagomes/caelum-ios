@@ -75,4 +75,13 @@
     
 }
 
+-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    NSString *parOuImpar = [[self.ultimosTweets allKeys] objectAtIndex:section];
+    return parOuImpar;
+}
+
+- (NSString *) tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    return @"FIM DA PARADA";
+}
+
 @end
