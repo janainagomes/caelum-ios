@@ -20,6 +20,9 @@
 @property (strong) NSString *twitter;
 @property (strong) UIImage *foto;
 
+@property (strong) NSNumber *latitude;
+@property (strong) NSNumber *longitude;
+
 - (NSString *)description;
 - (void)encodeWithCoder:(NSCoder *)aCoder;
 - (id)initWithCoder:(NSCoder *)aDecoder;

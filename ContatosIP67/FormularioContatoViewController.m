@@ -8,6 +8,8 @@
 
 #import "FormularioContatoViewController.h"
 #import "Contato.h"
+#import <CoreLocation/CoreLocation.h>
+
 
 @interface FormularioContatoViewController ()
 
@@ -29,6 +31,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    //Criando um observer para receber mensagens
+//    [[NSNotificationCenter defaultCenter] addObserver:self 
+//                                             selector:@selector(tecladoApareceu:)
+//                                                 name:UIKeyboardDidShowNotification 
+//                                               object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self 
+//                                             selector:@selector(tecladoSumiu) 
+//                                                 name:UIKeyboardDidHideNotification 
+//                                               object:nil];
+    
     if(self.contato){
         nome.text = contato.nome;
         telefone.text = contato.telefone;
@@ -36,6 +49,10 @@
         endereco.text = contato.endereco;
         site.text = contato.site;
         twitter.text = contato.twitter;
+        
+        latitude.text = [contato.latitude stringValue];
+        longitude.text = [contato.longitude stringValue];
+        
         if(contato.foto){
             [botaoFoto setImage: contato.foto
                        forState:UIControlStateNormal];
@@ -48,6 +65,16 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    
+//    [[NSNotificationCenter defaultCenter] removeObserver:self 
+//                                                    name:UIKeyboardDidShowNotification 
+//                                                  object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] removeObserver:self 
+//                                                    name:UIKeyboardWillHideNotification 
+//                                                  object:nil];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -55,7 +82,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-@synthesize nome, telefone, email, endereco, site, contato, delegate, twitter, botaoFoto;
+@synthesize nome, telefone, email, endereco, site, contato, delegate, twitter, botaoFoto,  longitude, latitude, botaoLocalizacao;
 //
 //- (IBAction) pegaDadosDoFormulario:(id)sender {
 //
@@ -93,6 +120,9 @@
     [contato setEndereco: [endereco text] ];
     [contato setSite: [site text]];
     [contato setTwitter: [twitter text]];
+    
+    [contato setLatitude: [NSNumber numberWithFloat:[latitude.text floatValue]]];
+    [contato setLongitude: [NSNumber numberWithFloat:[longitude.text floatValue]]];
     
     if(botaoFoto.imageView.image){
         contato.foto = botaoFoto.imageView.image;
@@ -218,6 +248,40 @@
     UIImage *imagemSelecionada = [info valueForKey:UIImagePickerControllerEditedImage];
     [botaoFoto  setImage:imagemSelecionada forState:UIControlStateNormal];
     [picker dismissModalViewControllerAnimated:YES];
+}
+
+-(void) tecladoApareceu:(NSNotification *) notification {
+    NSLog(@"Um teclado qualquer apareceu na tela");
+}
+
+-(void) tecladoSumiu:(NSNotification *) notification {
+    NSLog(@"Um teclado qualquer sumiu da tela");
+}
+
+//Mostrando mensgem do observer
+//-(void) textFieldDidBeginEditing:(UITextField *) textField{
+//    self.campoAtual = textField;
+//}
+
+//Mostrando mensgem do observer
+//-(void) textFieldDidEndEditing:(UITextField *)textField{
+//    self.campoAtual = nil;
+//}
+
+
+- (IBAction)buscarCoordenadas:(id)sender{
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:endereco.text completionHandler:
+     ^(NSArray *resultados, NSError *error) {
+         if(error == nil && [resultados count] > 0){
+             CLPlacemark *resultado = [resultados objectAtIndex:0];
+             CLLocationCoordinate2D coordenada = resultado.location.coordinate;
+             latitude.text = [NSString stringWithFormat:@"f%", coordenada.latitude];
+             longitude.text = [NSString stringWithFormat:@"f%", coordenada.longitude];
+         }
+     }];
+    
 }
 
 @end
