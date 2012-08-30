@@ -28,10 +28,10 @@
 		2007F3DC15F011D00048CD90 /* Twitter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Twitter-Prefix.pch"; sourceTree = "<group>"; };
 		2007F3DD15F011D00048CD90 /* DCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCAppDelegate.h; sourceTree = "<group>"; };
 		2007F3DE15F011D00048CD90 /* DCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCAppDelegate.m; sourceTree = "<group>"; };
-		2007F3E515F012170048CD90 /* DCUltimosTweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCUltimosTweetsViewController.h; path = Twitter/DCUltimosTweetsViewController.h; sourceTree = "<group>"; };
-		2007F3E615F012170048CD90 /* DCUltimosTweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCUltimosTweetsViewController.m; path = Twitter/DCUltimosTweetsViewController.m; sourceTree = "<group>"; };
-		90609A3815F02B1600D270DE /* DCTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCTweet.h; path = Twitter/DCTweet.h; sourceTree = "<group>"; };
-		90609A3915F02B1600D270DE /* DCTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCTweet.m; path = Twitter/DCTweet.m; sourceTree = "<group>"; };
+		2007F3E515F012170048CD90 /* DCUltimosTweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUltimosTweetsViewController.h; sourceTree = "<group>"; };
+		2007F3E615F012170048CD90 /* DCUltimosTweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCUltimosTweetsViewController.m; sourceTree = "<group>"; };
+		90609A3815F02B1600D270DE /* DCTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTweet.h; sourceTree = "<group>"; };
+		90609A3915F02B1600D270DE /* DCTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTweet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +51,6 @@
 		2007F3BF15F011D00048CD90 = {
 			isa = PBXGroup;
 			children = (
-				90609A3815F02B1600D270DE /* DCTweet.h */,
-				90609A3915F02B1600D270DE /* DCTweet.m */,
-				2007F3E515F012170048CD90 /* DCUltimosTweetsViewController.h */,
-				2007F3E615F012170048CD90 /* DCUltimosTweetsViewController.m */,
 				2007F3D415F011D00048CD90 /* Twitter */,
 				2007F3CD15F011D00048CD90 /* Frameworks */,
 				2007F3CB15F011D00048CD90 /* Products */,
@@ -82,6 +78,10 @@
 		2007F3D415F011D00048CD90 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				90609A3815F02B1600D270DE /* DCTweet.h */,
+				90609A3915F02B1600D270DE /* DCTweet.m */,
+				2007F3E515F012170048CD90 /* DCUltimosTweetsViewController.h */,
+				2007F3E615F012170048CD90 /* DCUltimosTweetsViewController.m */,
 				2007F3DD15F011D00048CD90 /* DCAppDelegate.h */,
 				2007F3DE15F011D00048CD90 /* DCAppDelegate.m */,
 				2007F3D515F011D00048CD90 /* Supporting Files */,
