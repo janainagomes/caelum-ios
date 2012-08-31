@@ -15,7 +15,7 @@
 
 @implementation ContatosNoMapaViewController
 
-@synthesize mapa;
+@synthesize mapa, contatos;
 
 -(id) init{
     self = [super init];
@@ -42,10 +42,6 @@
 - (void)viewDidLoad
 {
     
-
-    
-    //--
-    
     MKUserTrackingBarButtonItem *botaoLocalizacao = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapa];
     self.navigationItem.leftBarButtonItem = botaoLocalizacao;
     
@@ -65,6 +61,14 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    [self.mapa addAnnotations:contatos];
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    [self.mapa removeAnnotations:contatos];
 }
 
 @end

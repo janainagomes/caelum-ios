@@ -13,4 +13,6 @@
 
 @property (weak,nonatomic) IBOutlet MKMapView *mapa;
 
+@property (nonatomic, strong) NSMutableArray *contatos;
+
 @end

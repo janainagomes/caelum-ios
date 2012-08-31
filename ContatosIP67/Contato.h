@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MKAnnotation.h>
 
-@interface Contato : NSObject<NSCoding>
+@interface Contato : NSObject<NSCoding, MKAnnotation>
 
 //@property (nonatomic, strong) NSString *nome;
 
@@ -26,6 +27,8 @@
 - (NSString *)description;
 - (void)encodeWithCoder:(NSCoder *)aCoder;
 - (id)initWithCoder:(NSCoder *)aDecoder;
+
+
 
 //-(void) setNome:(NSString *)nome;
 //-(void) setTelefone:(NSString *)telefone;

@@ -277,8 +277,8 @@
          if(error == nil && [resultados count] > 0){
              CLPlacemark *resultado = [resultados objectAtIndex:0];
              CLLocationCoordinate2D coordenada = resultado.location.coordinate;
-             latitude.text = [NSString stringWithFormat:@"f%", coordenada.latitude];
-             longitude.text = [NSString stringWithFormat:@"f%", coordenada.longitude];
+             latitude.text = [NSString stringWithFormat:@"%f", coordenada.latitude];
+             longitude.text = [NSString stringWithFormat:@"%f", coordenada.longitude];
          }
      }];
     
