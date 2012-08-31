@@ -53,10 +53,10 @@
         latitude.text = [contato.latitude stringValue];
         longitude.text = [contato.longitude stringValue];
         
-        if(contato.foto){
-            [botaoFoto setImage: contato.foto
-                       forState:UIControlStateNormal];
-        }
+//        if(contato.foto){
+//            [botaoFoto setImage: contato.foto
+//                       forState:UIControlStateNormal];
+//        }
     }
 }
 
@@ -124,9 +124,9 @@
     [contato setLatitude: [NSNumber numberWithFloat:[latitude.text floatValue]]];
     [contato setLongitude: [NSNumber numberWithFloat:[longitude.text floatValue]]];
     
-    if(botaoFoto.imageView.image){
-        contato.foto = botaoFoto.imageView.image;
-    }
+//    if(botaoFoto.imageView.image){
+//        contato.foto = botaoFoto.imageView.image;
+//    }
     
     //NSLog(@"contato om nome: %@", [contato nome]);
      //[site resignFirstResponder];

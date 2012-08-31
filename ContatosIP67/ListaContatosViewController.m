@@ -161,7 +161,9 @@
         
         UIActionSheet *opcoes = [[UIActionSheet alloc] initWithTitle:contato.nome delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Ligar", @"Enviar Email", @"Visualizar site", @"Abrir Mapas", @"Twitter", nil];
         
-        [opcoes showInView:self.view];
+        //[opcoes showInView:self.view];
+        
+        [opcoes showFromTabBar:self.tabBarController.tabBar];
         
     }
 }

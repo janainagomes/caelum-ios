@@ -35,6 +35,8 @@
 		90A3ACB015E440450059F226 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A3ACAF15E440450059F226 /* AppDelegate.m */; };
 		90A3ACBB15E4410A0059F226 /* FormularioContatoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A3ACB915E4410A0059F226 /* FormularioContatoViewController.m */; };
 		90A3ACBC15E4410A0059F226 /* FormularioContatoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90A3ACBA15E4410A0059F226 /* FormularioContatoViewController.xib */; };
+		90C1EBDB15F1655F00BBDA21 /* Model_Contatos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 90C1EBD915F1655F00BBDA21 /* Model_Contatos.xcdatamodeld */; };
+		90C1EBDE15F16B4100BBDA21 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C1EBDD15F16B4100BBDA21 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		90A3ACB815E4410A0059F226 /* FormularioContatoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormularioContatoViewController.h; sourceTree = "<group>"; };
 		90A3ACB915E4410A0059F226 /* FormularioContatoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormularioContatoViewController.m; sourceTree = "<group>"; };
 		90A3ACBA15E4410A0059F226 /* FormularioContatoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormularioContatoViewController.xib; sourceTree = "<group>"; };
+		90C1EBDA15F1655F00BBDA21 /* Model_Contatos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_Contatos.xcdatamodel; sourceTree = "<group>"; };
+		90C1EBDD15F16B4100BBDA21 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90C1EBDE15F16B4100BBDA21 /* CoreData.framework in Frameworks */,
 				9092199215EEEA8B00D81400 /* CoreLocation.framework in Frameworks */,
 				9082C14515ED74B500861E80 /* MapKit.framework in Frameworks */,
 				90274AE315EC419900C2FD26 /* Twitter.framework in Frameworks */,
@@ -118,6 +123,7 @@
 		90A3AC9E15E440450059F226 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90C1EBDD15F16B4100BBDA21 /* CoreData.framework */,
 				9092199115EEEA8B00D81400 /* CoreLocation.framework */,
 				9082C14415ED74B500861E80 /* MapKit.framework */,
 				90274AE215EC419900C2FD26 /* Twitter.framework */,
@@ -160,6 +166,7 @@
 				908DEC9315E84B5200A0F4DC /* ListaContatosProtocol.h */,
 				9045958B15E59E96007150F6 /* ListaContatosViewController.h */,
 				9045958C15E59E96007150F6 /* ListaContatosViewController.m */,
+				90C1EBD915F1655F00BBDA21 /* Model_Contatos.xcdatamodeld */,
 				90A3ACA615E440450059F226 /* Supporting Files */,
 			);
 			path = ContatosIP67;
@@ -257,6 +264,7 @@
 				9082C14115ED741200861E80 /* ContatosNoMapaViewController.m in Sources */,
 				9082C15B15ED95EA00861E80 /* SiteDoContatoViewController.m in Sources */,
 				9092198F15EEDEEE00D81400 /* TPKeyboardAvoidingScrollView.m in Sources */,
+				90C1EBDB15F1655F00BBDA21 /* Model_Contatos.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +359,7 @@
 				90A3ACB215E440450059F226 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		90A3ACB315E440450059F226 /* Build configuration list for PBXNativeTarget "ContatosIP67" */ = {
 			isa = XCConfigurationList;
@@ -360,9 +368,22 @@
 				90A3ACB515E440450059F226 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		90C1EBD915F1655F00BBDA21 /* Model_Contatos.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				90C1EBDA15F1655F00BBDA21 /* Model_Contatos.xcdatamodel */,
+			);
+			currentVersion = 90C1EBDA15F1655F00BBDA21 /* Model_Contatos.xcdatamodel */;
+			path = Model_Contatos.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 90A3AC9215E440450059F226 /* Project object */;
 }

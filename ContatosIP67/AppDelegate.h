@@ -17,4 +17,6 @@
 
 @property (strong) NSString *arquivoContatos;
 
+@property(readonly,strong) NSManagedObjectContext *contexto;
+
 @end
